@@ -1,6 +1,6 @@
 node {
   def acr = 'acrdemo11.azurecr.io'
-  def appName = 'whoami'
+  def appName = 'whoami_app'
   def imageName = "${acr}/${appName}"
   def imageTag = "${imageName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   def appRepo = "acrdemo11.azurecr.io/whoami_app:v1.0.0"

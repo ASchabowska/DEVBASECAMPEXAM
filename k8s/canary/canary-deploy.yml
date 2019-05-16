@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: whoami
+  name: whoamiapp
 spec:
   replicas: 1
   selector:
@@ -9,13 +9,13 @@ spec:
       app: whoami
   template:
     metadata:
-      name: whoami
+      name: whoamiapp
       labels:
         app: whoami
         env: canary
     spec:
       containers:
-      - name: whoami
+      - name: whoamiapp
         image: acrdemo11.azurecr.io/whoami_app:v1.0.0
       imagePullSecrets:
       - name: acr-auth
@@ -23,9 +23,9 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: whoami
+  name: whoamiapp
   labels:
-    name: whoami
+    name: whoamiapp
 spec:
   type: ClusterIP
   ports:

@@ -1,0 +1,37 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: whoami
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whoami
+  template:
+    metadata:
+      name: whoami
+      labels:
+        app: whoami
+        env: dev
+    spec:
+      containers:
+      - name: whoami
+        image: acrdemo11.azurecr.io/whoami:v1.0.0
+      imagePullSecrets:
+      - name: acr-auth
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: whoami
+  labels:
+    name: whoami
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+  selector:
+    app: whoami

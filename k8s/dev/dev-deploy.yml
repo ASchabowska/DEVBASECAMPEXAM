@@ -27,11 +27,9 @@ metadata:
   labels:
     name: whoamiapp
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-  - name: http
   - port: 80
     targetPort: 8000
-    protocol: TCP
   selector:
     app: whoami
